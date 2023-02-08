@@ -14,7 +14,9 @@ class bus {
 		void view_bus();
 		void single_view_bus();
 		void all_view_bus();
-
+		void update_bus();
+		void del_bus();
+		void rout_bus();
 };
 	void bus::menu()
 	{
@@ -45,10 +47,13 @@ class bus {
 				view_bus();
 				break;
 			case 3:
+				update_bus();
 				break;
 			case 4:
+				del_bus();
 				break;
 			case 5:
+				rout_bus();
 				break;
 			case 6:
 				break;
@@ -201,6 +206,190 @@ class bus {
 				file>>b_no>>b_name>>b_seats>>d_name;
 			}
 			file.close();
+		}
+	}
+	void bus::update_bus()
+	{
+		system("cls");
+		fstream file,file1;
+		string t_no,no,t_name,td_name;
+		int t_seats,found=0;
+		cout<<"\n\t\t_______BUS MANAGEMENT SYSTEM_______";
+		file.open("bus.txt", ios::in);
+		if (!file)
+		{
+			cout<<"\n\n File Opening Error...";
+		}
+		else
+		{
+			cout<<"\n\n Bus No. ...";
+			cin>>t_no;
+			file1.open("bus1.txt", ios::app|ios::out);
+			file>>b_no>>b_name>>b_seats>>d_name;
+			while(!file.eof())
+			{
+				if (t_no == b_no)
+				{
+					cout<<"\n\n New Bus No. : ";
+					cin>>no;
+					cout<<"\n\n Bus Name: ";
+					cin>>t_name;
+					cout<<"\n\n No. of Seats: ";
+					cin>>t_seats;
+					cout<<"\n\n Driver Name: ";
+					cin>>td_name;
+					file1<<no<<" "<<t_name<<" "<<t_seats<<" "<<td_name<<"\n";
+					cout<<"\n\n\n Update Bus Record Successfully";
+					found++;
+				}
+				else
+				{
+					file1<<b_no<<" "<<b_name<<" "<<b_seats<<" "<<d_name<<"\n";
+				}
+				file>>b_no>>b_name>>b_seats>>d_name;
+			}
+			file.close();
+			file1.close();
+			remove("bus.txt");
+			rename("bus1.txt","bus.txt");
+			if (found==0)
+			{
+				cout<<"\n\n Bus number is invalid ...";
+			}
+		}
+	}
+	void bus::rout_bus()
+	{
+		p:
+		system("cls");
+		int choice;
+		cout << "\n\t\t_______BUS MANAGEMENT SYSTEM_______";
+		cout << "\n\n 1. 1st ROUT DETAILS";
+		cout << "\n\n 2. 2nd ROUT DETAILS";
+		cout << "\n\n 3. 3rd ROUT DETAILS";
+		cout << "\n\n 4. 4th ROUT DETAILS";
+		cout << "\n\n 5. 5th ROUT DETAILS";
+		cout << "\n\n Enter Your Choice: ";
+		cin >> choice;
+		switch (choice)
+		{
+			case 1:
+				system("cls");
+				cout << "\n\t\t_______BUS MANAGEMENT SYSTEM_______";
+				cout << "\n\n   From Pietarsaari to Kalajoki";
+				cout << "\n  9:00 am ...................  11:00 am";
+				cout << "\n   From Kouvola to Rovaniemi";
+				cout << "\n  12:00 pm ...................  2:30 pm";
+				cout << "\n   From Seinajoki to Kaustinen";
+				cout << "\n  4:00 am ....................  9:00 am";
+				cout << "\n   From Kalajoki to Kokkola";
+				cout << "\n  9:00 am ...................  2:00 pm";
+				cout << "\n   From Oulu to Turku";
+				cout << "\n  10:00 am ...................  11:30 am";
+				cout << "\n   From Lahti to Seinajoki";
+				cout << "\n  8:30 am ...................  10:00 am";
+				break;
+			case 2:
+				system("cls");
+				cout << "\n\t\t_______BUS MANAGEMENT SYSTEM_______";
+				cout << "\n\n   From Pietarsaari To Tampere";
+				cout << "\n  9:00 am ...................  10:00 am";
+				cout << "\n   From Kalajoki To Kaustinen";
+				cout << "\n  12:00 pm ...................  1:00 pm";
+				cout << "\n   From Oulu To Turku";
+				cout << "\n  10:00 pm ...................  11:00 pm";
+				break;
+			case 3:
+				system("cls");
+				cout << "\n\t\t_______BUS MANAGEMENT SYSTEM_______";
+				cout << "\n\n   From Kouvola To Lahti";
+				cout << "\n  8:30 am ...................  9:30 am";
+				cout << "\n   From Kalajoki To Tampere";
+				cout << "\n  1:00 pm ...................  2:30 pm";
+				cout << "\n   From Lahti To Kouvola";
+				cout << "\n  4:00 pm ....................  4:30 pm";
+				cout << "\n   From Kaustinen To Kuopio";
+				cout << "\n  7:00 am ...................  12:00 pm";
+				cout << "\n   From Pietarsaari To Kruunupyy";
+				cout << "\n  8:00 am ...................  10:00 am";
+				break;
+			case 4:
+				system("cls");
+				cout << "\n\t\t_______BUS MANAGEMENT SYSTEM_______";
+				cout << "\n\n   From Turku To Lahti";
+				cout << "\n  1:00 pm ...................  10:00 pm";
+				cout << "\n   From Pietarsaari To Kalajoki";
+				cout << "\n  8:00 pm ...................  10:30 pm";
+				cout << "\n   From Tampere To Rovaniemi";
+				cout << "\n  11:00 am ....................  1:30 pm";
+				cout << "\n   From Pietarsaari To Oulu";
+				cout << "\n  5:00 pm ...................  10:00 pm";
+				cout << "\n   From Kalajoki To Kokkola";
+				cout << "\n  6:00 pm ...................  11:00 am";
+				cout << "\n   From Kuopio To Tampere";
+				cout << "\n  7:30 am ...................  5:00 pm";
+				cout << "\n   From Oulu To Kalajoki";
+				cout << "\n  9:00 am ...................  5:00 pm";
+				break;
+			case 5:
+				system("cls");
+				cout << "\n\t\t_______BUS MANAGEMENT SYSTEM_______";
+				cout << "\n\n   From Kokkola To Kalajoki";
+				cout << "\n  8:00 pm ...................  12:00 am";
+				cout << "\n   From Lahti To Rovaniemi";
+				cout << "\n  11:00 pm ...................  3:30 am";
+				cout << "\n   From Pietarsaari To Turku";
+				cout << "\n  3:30 am ...................  5:00 am";
+				cout << "\n   From Pietarsaari To Oulu";
+				cout << "\n  7:30 am ...................  5:00 pm";
+				break;
+			default:
+				cout << "\n\n Invalid Choice ... Please Try Again";
+				_getch();
+				goto p;
+		}
+
+
+	}
+	void bus::del_bus()
+	{
+		system("cls");
+		fstream file, file1;
+		string t_no;
+		int found = 0;
+		cout<<"\n\t\t_______BUS MANAGEMENT SYSTEM_______";
+		file.open("bus.txt", ios::in);
+		if (!file)
+		{
+			cout << "\n\n File Opening Error...";
+		}
+		else
+		{
+			cout << "\n\n Bus No. ...";
+			cin >> t_no;
+			file1.open("bus1.txt", ios::app | ios::out);
+			file >> b_no >> b_name >> b_seats >> d_name;
+			while (!file.eof())
+			{
+				if (t_no == b_no)
+				{
+					cout << "\n\n\n Delete Record Successfully";
+					found++;
+				}
+				else
+				{
+					file1 << b_no << " " << b_name << " " << b_seats << " " << d_name << "\n";
+				}
+				file >> b_no >> b_name >> b_seats >> d_name;
+			}
+			file.close();
+			file1.close();
+			remove("bus.txt");
+			rename("bus1.txt", "bus.txt");
+			if (found == 0)
+			{
+				cout << "\n\n Bus number is invalid ...";
+			}
 		}
 	}
 int main() {
