@@ -1,0 +1,3 @@
+﻿  bus.cpp
+C:\Users\c151159\Desktop\ASPNET 6 MVC CRUD APP\BusReservation_CAMK\BusReservation_CAMK\bus.cpp(209,7): warning C4101: 'ch': unreferenced local variable
+  BusReservation_CAMK.vcxproj -> C:\Users\c151159\Desktop\ASPNET 6 MVC CRUD APP\BusReservation_CAMK\x64\Debug\BusReservation_CAMK.exe
