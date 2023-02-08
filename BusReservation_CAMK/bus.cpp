@@ -17,6 +17,7 @@ class bus {
 		void update_bus();
 		void del_bus();
 		void rout_bus();
+		void detail_bus();
 };
 	void bus::menu()
 	{
@@ -29,13 +30,14 @@ class bus {
 		cout<<"\n 3. UPDATE BUS DETAIL";
 		cout<<"\n 4. DELETE BUS DETAIL";
 		cout<<"\n 5. BUS ROUTES";
-		cout<<"\n 6. BOOKING RECORD";
-		cout<<"\n 7. SEAT RENOVATION";
-		cout<<"\n 8. SEARCH BOOKING RECORD";
-		cout<<"\n 9. UPDATE BOOKING RECORD";
-		cout<<"\n 10. DELETE BOOKING RECORD";
-		cout<<"\n 11. SHOW ALL BOOKING RECORD";
-		cout<<"\n 12. EXIT";
+		cout << "\n 6. BUS SEAT DETAILS";
+		cout<<"\n 7. BOOKING RECORD";
+		cout<<"\n 8. SEAT RENOVATION";
+		cout<<"\n 9. SEARCH BOOKING RECORD";
+		cout<<"\n 10. UPDATE BOOKING RECORD";
+		cout<<"\n 11. DELETE BOOKING RECORD";
+		cout<<"\n 12. SHOW ALL BOOKING RECORD";
+		cout<<"\n 13. EXIT";
 		cout<<"\n\n Enter Your Choice : ";
 		cin>>choice;
 		switch (choice)
@@ -56,6 +58,7 @@ class bus {
 				rout_bus();
 				break;
 			case 6:
+				detail_bus();
 				break;
 			case 7:
 				break;
@@ -68,6 +71,8 @@ class bus {
 			case 11:
 				break;
 			case 12:
+				break;
+			case 13:
 				exit(0);
 			default:
 				cout<<"\n\n Invalid Choice. Please try again";
@@ -391,6 +396,60 @@ class bus {
 				cout << "\n\n Bus number is invalid ...";
 			}
 		}
+	}
+	void bus::detail_bus()
+	{
+		system("cls");
+		fstream file, file1;
+		string t_no,s_b_no,s_no;
+		int count = 0, found=0;
+		cout << "\n\t\t_______BUS MANAGEMENT SYSTEM_______";
+		file1.open("seat.txt",ios::app|ios::out);
+		file1 << "E-100" << " " << 5 << "\n";
+		file1 << "E-300" << " " << 20 << "\n";
+		file1 << "E-500" << " " << 14 << "\n";
+		file1.close();
+		file.open("bus.txt",ios::in);
+		file1.open("seat.txt", ios::in);
+		if(!file||!file1)
+		{ 
+			cout << "\n\n File Opening Error";
+		}
+		else
+		{
+			cout << "\n\n Bus No. : ";
+			cin >> t_no;
+			file1 >> s_b_no >> s_no;
+			while (!file1.eof());
+			{
+				if (t_no == s_b_no)
+				{
+					count++;
+				}
+				file1 >> s_b_no >> s_no;
+			}
+			file1.close();
+			file >> b_no >> b_name >> b_seats >> d_name;
+			while (!file.eof())
+			{
+				if (t_no == b_no)
+				{
+					system("cls");
+					cout << "\n\t\t_______BUS MANAGEMENT SYSTEM_______";
+					cout << "\n\n Total No. Of Seats: "<<b_seats;
+					cout << "\n\n Reserved No. Of Seats: " <<count;
+					cout << "\n\n Empty No. Of Seats: " << b_seats-count;
+					found++;
+				}
+				file >> b_no >> b_name >> b_seats >> d_name;
+			}
+			file.close();
+			if (found == 0)
+			{
+				cout << "\n\n Bus No. Is Invalid... ";
+			}
+		}
+
 	}
 int main() {
 	bus b;
